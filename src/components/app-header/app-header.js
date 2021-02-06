@@ -1,6 +1,7 @@
 import React from "react";
 import cartIcon from "./shopping-cart-solid.svg";
 import "./app-header.scss";
+import PropTypes from "prop-types";
 
 const AppHeader = ({total}) => {
     return (
@@ -14,6 +15,10 @@ const AppHeader = ({total}) => {
             </a>
         </header>
     );
+};
+
+AppHeader.propTypes = {
+    total: PropTypes.number
 };
 
 export default AppHeader;

@@ -1,9 +1,27 @@
 import React, {Component} from "react";
 import Error from "../error";
+import PropTypes from "prop-types";
 
 export default class ErrorBoundry extends Component {
+
+    state = {
+        error: false
+    };
+
+    componentDidCatch(error, errorInfo) {
+        console.log(`${error}: ${errorInfo}`);
+        this.setState({error: true});
+    }
+
     render() {
-       
-        return 1;
+       if (this.state.error) {
+           return <Error/>;
+       }
+       console.log(typeof this.props.children);
+       return this.props.children;
     }
 }
+
+ErrorBoundry.propTypes = {
+    children: PropTypes.object
+};
