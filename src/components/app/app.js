@@ -2,6 +2,7 @@ import React from "react";
 import {MainPage, CartPage} from "../pages";
 import AppHeader from "../app-header";
 import WithRestoService from "../hoc";
+import {Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Background from "./food-bg.jpg";
@@ -11,8 +12,19 @@ const App = ({RestoService}) => {
     return (
         <div style={{background: `url(${Background}) center center/cover no-repeat`}} className="app">
             <AppHeader total={50}/>
-            <MainPage/>
-            <CartPage/>
+            <Switch>
+                <Route path="/menu">
+                    <h1>
+                        Меню
+                    </h1>
+                </Route>
+                <Route path="/cart">
+                    <CartPage/>
+                </Route>
+                <Route path="/">
+                    <MainPage/>
+                </Route>
+            </Switch>
         </div>
     );
 };
