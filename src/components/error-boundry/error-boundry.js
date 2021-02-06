@@ -17,7 +17,7 @@ export default class ErrorBoundry extends Component {
        if (this.state.error) {
            return <Error/>;
        }
-       console.log(typeof this.props.children);
+
        return this.props.children;
     }
 }
