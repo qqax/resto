@@ -11,7 +11,7 @@ const AppHeader = ({total}) => {
                 Menu
             </Link>
             <Link to="/cart" className="header__link">
-                <img className="header__cart" src={cartIcon} alt="cart"></img>
+                <img className="header__cart" src={cartIcon} alt="cart"/>
                 Total: {total} $
             </Link>
         </header>
