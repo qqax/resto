@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const AppHeader = ({total}) => {
     return (
         <header className="header">
-            <Link to="/menu" className="header__link">
+            <Link to="/" className="header__link">
                 Menu
             </Link>
             <Link to="/cart" className="header__link">
