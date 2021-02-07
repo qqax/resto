@@ -18,12 +18,9 @@ const App = ({RestoService}) => {
                         Меню
                     </h1>
                 </Route>
-                <Route path="/cart">
-                    <CartPage/>
-                </Route>
-                <Route path="/">
-                    <MainPage/>
-                </Route>
+                <Route path='/' exact component={MainPage}/>
+                <Route path='/cart' component={CartPage}/>
+                <Route exact component={MainPage}/>
             </Switch>
         </div>
     );
