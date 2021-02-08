@@ -3,6 +3,7 @@ import MenuListItem from "../menu-list-item";
 import {connect} from "react-redux";
 import WithRestoService from "../hoc";
 import {menuLoaded} from "../../actions";
+import Spinner from "../spinner";
 import PropTypes from "prop-types";
 
 import "./menu-list.scss";
@@ -15,7 +16,11 @@ class MenuList extends Component {
     }
 
     render() {
-        const {menuItems} = this.props;
+        const {menuItems, loading} = this.props;
+
+        if (loading) {
+            return <Spinner/>;
+        }
 
         return (
             <ul className="menu__list">
@@ -32,12 +37,14 @@ class MenuList extends Component {
 MenuList.propTypes = {
     menuItems: PropTypes.array,
     RestoService: PropTypes.object,
-    menuLoaded: PropTypes.func
+    menuLoaded: PropTypes.func,
+    loading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
-        menuItems: state.menu
+        menuItems: state.menu,
+        loading: state.loading
     };
 };
 
@@ -45,4 +52,5 @@ const mapDispatchToProps = {
     menuLoaded
 };
 
+// eslint-disable-next-line babel/new-cap
 export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));
