@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import MenuListItem from "../menu-list-item";
 import {connect} from "react-redux";
 import WithRestoService from "../hoc";
-import {menuLoaded} from "../../actions";
+import {menuLoaded, menuRequested} from "../../actions";
 import Spinner from "../spinner";
 import PropTypes from "prop-types";
 
@@ -10,6 +10,8 @@ import "./menu-list.scss";
 
 class MenuList extends Component {
     componentDidMount() {
+        this.props.menuRequested();
+
         const {RestoService} = this.props;
         RestoService.getMenuItems()
             .then(res => this.props.menuLoaded(res));
@@ -38,6 +40,7 @@ MenuList.propTypes = {
     menuItems: PropTypes.array,
     RestoService: PropTypes.object,
     menuLoaded: PropTypes.func,
+    menuRequested: PropTypes.func,
     loading: PropTypes.bool
 };
 
@@ -49,7 +52,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    menuLoaded
+    menuLoaded,
+    menuRequested
 };
 
 // eslint-disable-next-line babel/new-cap
