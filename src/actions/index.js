@@ -11,7 +11,16 @@ const menuRequested = () => {
     };
 };
 
+const menuError = (err) => {
+    console.log(err);
+    return {
+        type: "MENU_ERROR",
+    };
+};
+
+
 export {
     menuLoaded,
-    menuRequested
+    menuRequested,
+    menuError
 };
