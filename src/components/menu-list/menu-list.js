@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import MenuListItem from "../menu-list-item";
 import {connect} from "react-redux";
-import WithRestoService from "../hoc";
+import withRestoService from "../hoc/with-resto-service";
 import {menuLoaded, menuRequested, menuError} from "../../actions";
 import Spinner from "../spinner";
 import Error from "../error";
@@ -30,17 +30,25 @@ class MenuList extends Component {
             return <Spinner/>;
         }
 
+        const items = menuItems.map(menuItem => {
+            return (
+                <MenuListItem key={menuItem.id} menuItem={menuItem}/>
+                );
+        });
+
         return (
-            <ul className="menu__list">
-                {
-                    menuItems.map(menuItem => {
-                        return <MenuListItem key={menuItem.id} menuItem={menuItem}/>;
-                    })
-                }
-            </ul>
+            <View items={items}/>
         );
     }
 }
+
+const View = ({items}) => {
+    return (
+        <ul className="menu__list">
+            {items}
+        </ul>
+    );
+};
 
 MenuList.propTypes = {
     menuItems: PropTypes.array,
@@ -50,6 +58,10 @@ MenuList.propTypes = {
     menuError: PropTypes.func,
     loading: PropTypes.bool,
     err: PropTypes.bool
+};
+
+View.propTypes = {
+    items: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
@@ -66,5 +78,4 @@ const mapDispatchToProps = {
     menuError
 };
 
-// eslint-disable-next-line babel/new-cap
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));
+export default withRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));
