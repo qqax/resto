@@ -21,13 +21,14 @@ class MenuList extends Component {
 
     render() {
         const {menuItems, loading, err} = this.props;
+        const component = (err ? <Error/> : loading ? <Spinner/> : undefined);
 
-        if (err) {
-            return <Error/>;
-        }
-
-        if (loading) {
-            return <Spinner/>;
+        if (component) {
+            return (
+                <div className="item_page">
+                    {component}
+                </div>
+            );
         }
 
         const items = menuItems.map(menuItem => {

@@ -1,0 +1,10 @@
+.error {
+    display: flex;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 100px;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    position: fixed;
+    background: url("https://avatars.mds.yandex.net/get-zen_doc/198334/pub_5c73da788cbda400c2d1373f_5c73de7ced8b1500b3615361/scale_2400") no-repeat center center fixed;
+}

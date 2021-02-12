@@ -11,7 +11,7 @@ const menuRequested = () => {
     };
 };
 
-const menuError = (err) => {
+const menuError = (err = "Need ERROR description!!!") => {
     console.log(err);
     return {
         type: "MENU_ERROR",
