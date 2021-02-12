@@ -32,8 +32,7 @@ class ItemPage extends Component {
     }
 
     render() {
-        const {menuItems} = this.props;
-        console.log(this.props);
+        const {menuItems} = this.props
         if(this.props.loading) {
             return (
                 <div className = "item_page">
