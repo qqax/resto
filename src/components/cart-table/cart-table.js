@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
+import {deleteFromCart} from "../../actions";
 import "./cart-table.scss";
 import PropTypes from "prop-types";
-import {deleteFromCart} from "../../actions";
 
 const CartTable = ({items, deleteFromCart}) => {
     if (!items.length) {

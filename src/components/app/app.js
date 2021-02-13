@@ -1,6 +1,5 @@
 import React from "react";
-import {MainPage, CartPage} from "../pages";
-import ItemPage from "../pages/itemPage";
+import {MainPage, CartPage, ItemPage} from "../pages";
 import AppHeader from "../app-header";
 import {Switch, Route} from "react-router-dom";
 

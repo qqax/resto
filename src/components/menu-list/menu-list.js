@@ -6,11 +6,11 @@ import {menuLoaded, menuRequested, menuError, addedToCart} from "../../actions";
 import Spinner from "../spinner";
 import Error from "../error";
 import PropTypes from "prop-types";
-
 import "./menu-list.scss";
 
 class MenuList extends Component {
     componentDidMount() {
+        console.log(this.props.menuItems);
         this.props.menuRequested();
 
         const {RestoService} = this.props;
@@ -46,14 +46,6 @@ class MenuList extends Component {
     }
 }
 
-const View = ({items}) => {
-    return (
-        <ul className="menu__list">
-            {items}
-        </ul>
-    );
-};
-
 MenuList.propTypes = {
     menuItems: PropTypes.array,
     RestoService: PropTypes.object,
@@ -63,6 +55,14 @@ MenuList.propTypes = {
     addedToCart: PropTypes.func,
     loading: PropTypes.bool,
     err: PropTypes.bool
+};
+
+const View = ({items}) => {
+    return (
+        <ul className="menu__list">
+            {items}
+        </ul>
+    );
 };
 
 View.propTypes = {
