@@ -36,7 +36,7 @@ class MenuList extends Component {
                 <MenuListItem
                     key={menuItem.id}
                     menuItem={menuItem}
-                onAddToCart={() => addedToCart(menuItem.id)}/>
+                    onAddToCart={() => addedToCart(menuItem.id)}/>
                 );
         });
 

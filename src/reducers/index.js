@@ -34,12 +34,21 @@ const reducer = (state = initialState, action) => {
                 url: item.url,
                 id: item.id
             };
-            console.log(item);
             return {
                 ...state,
                 items: [
                     ...state.items,
                     newItem
+                ]
+            };
+        }
+        case "REMOVE_ITEM_FROM_CART": {
+            const id = action.payload;
+            const itemIndex = state.items.findIndex(item => item.id === id);
+            return {
+                ...state,
+                items: [
+                    ...state.items.slice(0, itemIndex), ...state.items.slice(itemIndex + 1)
                 ]
             };
         }

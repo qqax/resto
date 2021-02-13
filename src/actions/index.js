@@ -25,10 +25,17 @@ const addedToCart = (id) => {
     };
 };
 
+const deleteFromCart = (id) => {
+    return {
+        type: "REMOVE_ITEM_FROM_CART",
+        payload: id
+    };
+};
 
 export {
     menuLoaded,
     menuRequested,
     menuError,
-    addedToCart
+    addedToCart,
+    deleteFromCart
 };

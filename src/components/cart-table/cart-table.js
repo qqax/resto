@@ -2,8 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import "./cart-table.scss";
 import PropTypes from "prop-types";
+import {deleteFromCart} from "../../actions";
 
-const CartTable = ({items, onDelete}) => {
+const CartTable = ({items, deleteFromCart}) => {
     if (!items.length) {
         return <div className="cart__title">Добавьте товары в корзину!</div>;
     }
@@ -19,7 +20,7 @@ const CartTable = ({items, onDelete}) => {
                                 <img src={url} className="cart__item-img" alt={title}/>
                                 <div className="cart__item-title">{title}</div>
                                 <div className="cart__item-price">{price}$</div>
-                                <div onClick={() => {onDelete(id);}} className="cart__close">&times;</div>
+                                <div onClick={() => deleteFromCart(id)} className="cart__close">&times;</div>
                             </div>
                         );
                     })
@@ -31,7 +32,8 @@ const CartTable = ({items, onDelete}) => {
 
 CartTable.propTypes = {
     items: PropTypes.array,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    deleteFromCart: PropTypes.func
 };
 
 const mapStateToProps = ({items}) => {
@@ -40,12 +42,8 @@ const mapStateToProps = ({items}) => {
     };
 };
 
-const mapDispatchToProps = () => {
-    return {
-        onDelete: (id) => {
-            console.log(`${id} deleted!`);
-        }
-    };
+const mapDispatchToProps = {
+    deleteFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
