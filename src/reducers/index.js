@@ -15,7 +15,6 @@ const reducer = (state = initialState, action) => {
             };
         case "MENU_REQUESTED":
             return {
-                // menu: state.menu,
                 ...state,
                 loading: true
             };
@@ -27,11 +26,25 @@ const reducer = (state = initialState, action) => {
         case "ADD_ITEM_TO_CART": {
             const id = action.payload;
             const item = state.menu.find(item => item.id === id);
+            const duplicateIndex = state.items.findIndex(item => item.id === id);
+
+            if (~duplicateIndex) {
+                const itemInState = Object.assign({}, state.items[duplicateIndex]);
+                ++itemInState.sum;
+                return {
+                    ...state,
+                    items: [
+                        ...state.items.slice(0, duplicateIndex), itemInState, ...state.items.slice(duplicateIndex + 1)
+                    ]
+                };
+            }
+
             const newItem = {
                 title: item.title,
                 price: item.price,
                 url: item.url,
-                id: item.id
+                id: item.id,
+                sum: 1
             };
             return {
                 ...state,
