@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {deleteFromCart} from "../../actions";
 import "./cart-table.scss";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 const CartTable = ({items, deleteFromCart}) => {
     if (!items.length) {
@@ -17,7 +18,9 @@ const CartTable = ({items, deleteFromCart}) => {
                         const {title, price, url, id, sum} = item;
                         return (
                             <div key={id} className="cart__item">
-                                <img src={url} className="cart__item-img" alt={title}/>
+                                <Link to={`/${id}`} className="pointer">
+                                    <img src={url} className="cart__item-img" alt={title}/>
+                                </Link>
                                 <div className="cart__item-title">{title} {sum > 1 ? `(${sum})` : undefined}</div>
                                 <div className="cart__item-price">{price}$</div>
                                 <div onClick={() => deleteFromCart(id)} className="cart__close">&times;</div>

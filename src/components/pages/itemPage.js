@@ -22,7 +22,6 @@ class ItemPage extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props.menuItems);
         if (this.props.menuItems.length === 0) {
             this.props.menuRequested();
 
