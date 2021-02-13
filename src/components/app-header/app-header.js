@@ -1,10 +1,11 @@
 import React from "react";
+import {connect} from "react-redux";
 import cartIcon from "./shopping-cart-solid.svg";
 import "./app-header.scss";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
-const AppHeader = ({total}) => {
+const AppHeader = ({amount}) => {
     return (
         <header className="header">
             <Link to="/" className="header__link">
@@ -12,14 +13,20 @@ const AppHeader = ({total}) => {
             </Link>
             <Link to="/cart" className="header__link">
                 <img className="header__cart" src={cartIcon} alt="cart"/>
-                Total: {total} $
+                Total: {amount} $
             </Link>
         </header>
     );
 };
 
 AppHeader.propTypes = {
-    total: PropTypes.number
+    amount: PropTypes.number
 };
 
-export default AppHeader;
+const mapStateToProps = ({amount}) => {
+    return {
+        amount
+    };
+};
+
+export default connect(mapStateToProps)(AppHeader);

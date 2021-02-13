@@ -10,7 +10,6 @@ import "./menu-list.scss";
 
 class MenuList extends Component {
     componentDidMount() {
-        console.log(this.props.menuItems);
         this.props.menuRequested();
 
         const {RestoService} = this.props;
