@@ -29,6 +29,7 @@ const CartTable = ({items, deleteFromCart}) => {
                     })
                 }
             </div>
+            <button className="cart__btn">Confirm</button>
         </>
     );
 };
