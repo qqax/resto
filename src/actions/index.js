@@ -32,10 +32,25 @@ const deleteFromCart = (id) => {
     };
 };
 
+const clearCart = () => {
+    return {
+        type: "CLEAR_CART",
+    };
+};
+
+const sendCart = (status) => {
+    return {
+        type: "SEND_CART",
+        status
+    };
+};
+
 export {
     menuLoaded,
     menuRequested,
     menuError,
     addedToCart,
-    deleteFromCart
+    deleteFromCart,
+    sendCart,
+    clearCart
 };

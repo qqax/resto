@@ -1,6 +1,7 @@
 const initialState = {
     menu: [],
     loading: true,
+    sent: undefined,
     error: false,
     items: [],
     amount: 0
@@ -81,6 +82,17 @@ const reducer = (state = initialState, action) => {
                 amount
             };
         }
+        case "SEND_CART":
+            console.log(action.status);
+            return {
+                ...state,
+                sent: action.status
+            };
+        case "CLEAR_CART":
+            return {
+                ...state,
+                items: []
+            };
         default:
             return state;
     }
