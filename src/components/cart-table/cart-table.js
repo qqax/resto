@@ -1,14 +1,28 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import withRestoService from "../hoc";
-import {deleteFromCart, sendCart, clearCart} from "../../actions";
+import {clearCart, deleteFromCart, sendCart} from "../../actions";
 import "./cart-table.scss";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
 class CartTable extends Component {
+    componentWillUnmount() {
+        if (this.props.sent > 0 ) {
+            this.props.clearCart();
+            this.props.sendCart(undefined);
+            clearTimeout(this.timerId);
+        }
+    }
+
+    timerId = undefined;
+    timer = () => setTimeout(() => {
+                this.props.clearCart();
+                this.props.sendCart(undefined);
+            }, 4000);
+
     render() {
-        const {items, sent, sendCart, clearCart, deleteFromCart, RestoService} = this.props;
+        const {items, sent, sendCart, deleteFromCart, RestoService} = this.props;
 
         if (!items.length) {
             return <div className="cart__title">Добавьте товары в корзину!</div>;
@@ -45,10 +59,10 @@ class CartTable extends Component {
                 }
             : sent > 0 ? () => {
                     document.body.classList.remove("cart__sent");
-                    setTimeout(() => {
-                        clearCart();
-                        sendCart(undefined);
-                    }, 5000);
+                    if (!this.timerId) {
+                        this.timerId = this.timer();
+                    }
+
                     return <button className="cart__btn">Заказ №{sent} отправлен</button>;
                 }
             : () => <button onClick={() => sendOrderToServer("alex", items)} className="cart__btn">Оформить

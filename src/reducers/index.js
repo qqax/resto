@@ -83,7 +83,6 @@ const reducer = (state = initialState, action) => {
             };
         }
         case "SEND_CART":
-            console.log(action.status);
             return {
                 ...state,
                 sent: action.status
@@ -91,7 +90,8 @@ const reducer = (state = initialState, action) => {
         case "CLEAR_CART":
             return {
                 ...state,
-                items: []
+                items: [],
+                amount: 0
             };
         default:
             return state;
